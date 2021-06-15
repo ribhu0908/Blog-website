@@ -1,10 +1,9 @@
-//jshint esversion:6
-
 //------------------------------ACQUIRE ALL PACKAGES/CONSTANTS---------------------------------------------
 const express = require("express");
 const mongoose = require("mongoose");
 const ejs = require("ejs");
 const _ = require("lodash");
+
 
 const app = express();
 
@@ -15,10 +14,33 @@ app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-const homeStartingContent = "Welcome to Guidanceopedia, an Initiative by Ribhu Mukherjee. I have lived a journey from an average student with 14+ backs to getting selected in top IITs. In this blog, I share guidance related to GATE,Coding and Mental health"
-const aboutContent= "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-const contactContent= "On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds in these matters to this principle of selection: he rejects pleasures to secure other greater pleasures, or else he endures pains to avoid worse pains."
+const homeStartingContent = `Welcome to Guidanceopedia!! A Free Initiative by Ribhu Mukherjee. I have \
+scored 99.4%ile in GATE CSE 2020, and thereafter got selected in IIT Madras, IIT Bombay, IIT BHU, top \
+NITs and top IIITs. I have taken 7+ seminars across engineering colleges/ universities guiding about \
+GATE, Mental Health and coding. I am passionate about teaching and I am currently teaching 2800+ \
+students in Youtube related to coding and GATE. In this blog, I will be putting my heart out \
+in all areas related to tips and strategies of GATE, coding, mental health insights and much more. \
+You can consider it to be our personal diary, where we will be exchanging views.\
+Chalo kuch baatein kare!!`
 
+
+const aboutContent= `
+From 14+ Backlogs in my BTech, with being disqualified to even sit for campus placements,
+battling depression and mental problems (even faced a point where I decided to quit Engineering)
+TO 99.4%ile in GATE CS,Selected for Mtech RA in CSE dept(Rank 1)- NIT Suratkal,Selected for Mtech RA in Data Science dept(Rank 1)- NIT Suratkal
+,Selected for MS+Phd in the CSE dept. Stood (Rank 1) thus received a full-time IRF scholarship- 
+BIT MESRA, Selected for Mtech CSE(Rank 2) - IIIT Delhi,
+Selected for MS+PhD in the CSE Dept- IIT Ropar,
+Selected for MS-IDRP - IIT Madras,
+Selected for MS+phd in the CSE Dept- IIT BHU,
+Selected for MS+ phd in CSE - IIT Bombay,
+(After IIT Madras selection I stopped sitting for rest of the interviews)
+Its been a journey. And I give the full credit to my friends and family.
+My NEW YEAR RESOLUTION WILL BE TO MENTOR AND GUIDE AS MANY STUDENTS AS POSSIBLE 
+FOR GATE CSE/MS PHD IIT INTERVIEWS.
+`;
+
+const contactContent= "Write to me at iribhumukherjee@gmail.com.";
 let posts = []; //global array
 
 //-------------------------CONNECT TO DB & CREATE COLLECTIONS-------------------------------------
@@ -93,6 +115,7 @@ app.post("/compose", function (req, res) {
 
 app.get("/posts/:postName", function (req, res) {
   const requestedTitle = req.params.postName; 
+  console.log(requestedTitle);
   
   Blog.findOne({ title: requestedTitle }, function (err, foundBlog) {
     if (!err) {
