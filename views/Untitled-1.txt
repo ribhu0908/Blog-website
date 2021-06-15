@@ -1,0 +1,16 @@
+db.products.insertOne(
+    {
+        _id:2,
+        name:"penstand",
+        review:[
+            {
+                authorname:"Sushil",
+                rating:5
+            },
+            {
+                authorname:"ram",
+                rating:10
+            }
+        ]
+    }
+)
