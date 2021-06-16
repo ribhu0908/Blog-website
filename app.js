@@ -46,7 +46,7 @@ let posts = []; //global array
 //-------------------------CONNECT TO DB & CREATE COLLECTIONS-------------------------------------
 
 //connect to mongodb localHost
-mongoose.connect("mongodb://localhost:27017/blogDB", { useNewUrlParser: true });
+mongoose.connect("mongodb+srv://ribhu-mukherjee:babu2309@cluster0.rtndj.mongodb.net/blogDB", { useNewUrlParser: true });
 
 //Create Blogs collection
 const blogsSchema = {
